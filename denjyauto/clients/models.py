@@ -20,6 +20,7 @@ class Client(models.Model):
     phone_number = models.CharField(max_length=20, blank=True, null=True, verbose_name= "Phone number")
     email = models.EmailField(blank=True, null=True, verbose_name= "Email")
     points = models.PositiveIntegerField(default=0, verbose_name="Points")
+    user = models.OneToOneField('accounts.CustomUser', on_delete=models.SET_NULL, null=True, blank=True)
 
 
 class Car(models.Model):
