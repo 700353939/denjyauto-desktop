@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="{% url 'car-add' client.pk %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Car</button>
+        you already know it's gonna be beautiful
+    </form>
+</body>
+</html>

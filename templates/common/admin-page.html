@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="window.location.href='{% url 'admin:index' %}'">Go to Admin Panel</button>
+<button onclick="location.href='{% url 'register-worker'%}'"> Register Worker </button>
+
+<p>admin_page, register - worker, search form</p>
+<p>It's gonna be beautiful too....</p>
+    
+    <form class="searchbar" method="post">
+        <input type="text" placeholder="Search client...">
+        <button>
+            <img src="/static/images/rim-button.png">
+        </button>
+        <div></div>
+        <div><a href="{% url 'clientcar-add' %}"> Add New Client And Car </a></div>
+        <div></div>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Client name</th>
+            <th>Client point</th>            
+            <th></th>
+            <th>Cars</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for client in all_clients %}
+            <tr>
+                <td>{{ client.name }}</td>
+                <td>{{ client.points }}</td>
+                <td><button onclick="location.href='{% url 'client-details' client.pk %}'"> Client Details </button></td>
+                {% if client.car_set  %}
+                    <td>
+                        {% for car in client.car_set.all %}
+                            <button onclick="location.href='{% url 'car-details' client_pk=client.pk pk=car.pk %}'"> {{ car.license_plate }} </button>
+                        {% endfor %}
+                        <button onclick="location.href='{% url 'car-add' client.pk %}'">Add Car</button>
+                    </td>                    
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+    <div class="pagination">
+        <span class="current"> 
+            Page {{ all_clients.number }} of {{ all_clients.paginator.num_pages }} 
+        </span> 
+        <span> 
+        <!-- If there are previous and next client --> 
+            {% if all_clients.has_previous and all_clients.has_next %} 
+                <a href="?page={{ all_clients.previous_page_number }}"> 
+                    <i>arrow-left</i> 
+                </a> 
+                <a href="?page={{ all_clients.next_page_number }}"> 
+                    <i>arrow-right</i> 
+                </a> 
+            <!-- If there are only previous client --> 
+            {% elif all_clients.has_previous %} 
+                <a href="?page={{ all_clients.previous_page_number }}"> 
+                    <i>arrow-left</i> 
+                </a> 
+            <!-- If there are only next client --> 
+            {% elif all_clients.has_next %} 
+                <a href="?page={{ all_clients.next_page_number }}"> 
+                    <i>arrow-right</i> 
+                </a>
+            {% endif %} 
+        </span> 
+    </div> 
+</body>
+</html>

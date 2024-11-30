@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Repairs</title>
+</head>
+<body>
+<div>
+    <button onclick="location.href='{% url 'repair-add' client_pk=client.pk car_pk=car.pk %}'"> Add new repair </button>
+</div>
+<h1>Repair Details</h1>
+<p>Client: {{ client.name }}</p>
+<p>Car: {{ car.license_plate }}</p>
+
+{% for repair_detail in repairs %}
+    <table>
+        {% for field in repair_detail.fields %}
+            <tr>
+                <td>{{ field.key }}</td>
+                <td>{{ field.value }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td><button onclick="location.href='{% url 'repair-edit' client_pk=client.pk car_pk=car.pk pk=repair_detail.repair.pk %}'"> Edit Repair </button></td>
+            <td><button onclick="location.href='{% url 'repair-delete' client_pk=client.pk car_pk=car.pk pk=repair_detail.repair.pk %}'"> Delete Repair </button></td>
+            <td>
+                {% if repair_detail.has_sensinfo %}
+                    <button onclick="location.href='{% url 'sensinfo-details' client_pk=client.pk car_pk=car.pk repair_pk=repair_detail.repair.pk %}'">View Admin Info</button>
+                {% else %}
+                    <button onclick="location.href='{% url 'sensinfo-add' client_pk=client.pk car_pk=car.pk repair_pk=repair_detail.repair.pk %}'">Add Admin Info</button>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+{% endfor %}
+</body>
+</html>

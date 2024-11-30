@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post">
+        <h1>Sensitive Info Details</h1>
+            <ul>
+                {% for field, value in sensinfo_fields %}
+                    <li>{{ field }}: {{ value }} </li>
+                {% endfor %}
+            </ul>
+    </form>
+    <button onclick="location.href='{% url 'sensinfo-edit' client_pk=client.pk car_pk=car.pk repair_pk=repair.pk pk=sensinfo.pk %}'">Edit Sensitive Info</button>
+    <button onclick="location.href='{% url 'sensinfo-delete' client_pk=client.pk car_pk=car.pk repair_pk=repair.pk pk=sensinfo.pk %}'"> Delete Sensitive Info </button>
+    you already know it's gonna be beautiful
+</body>
+</html>

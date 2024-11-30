@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Details</title>
+</head>
+<body>
+    <form method="post">
+        <h1>Client details</h1>
+            <ul>
+                {% for field, value in fields %}
+                    <li>{{ field }}: {{ value }} </li>
+                {% endfor %}
+            </ul>
+    </form>
+    <button onclick="location.href='{% url 'client-edit' client.pk %}'">Edit Client</button>
+    <button onclick="location.href='{% url 'client-delete' client.pk %}'"> Delete Client </button>
+    <button onclick="location.href='{% url 'car-add' client.pk %}'">Add New Car</button>
+    you already know it's gonna be beautiful
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+-

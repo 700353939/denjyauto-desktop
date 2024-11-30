@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Client</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ client_form.as_p }}
+        {{ car_form.as_p }}
+        <button type="submit"> Save </button>
+        you already know it's gonna be beautiful
+    </form>
+</body>
+</html>
