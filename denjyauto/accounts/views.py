@@ -37,7 +37,7 @@ def redirect_after_login(request, user):
     else:
         return redirect('/common/')
 
-class RegisterWorker(PermissionRequiredMixin, CreateView): #todo
+class RegisterWorker(PermissionRequiredMixin, CreateView):
     model = UserModel
     form_class = WorkerUserCreationForm
     template_name = 'accounts/register-worker.html'
@@ -55,6 +55,3 @@ class RegisterWorker(PermissionRequiredMixin, CreateView): #todo
         user.groups.add(group)
 
         return response
-
-
-

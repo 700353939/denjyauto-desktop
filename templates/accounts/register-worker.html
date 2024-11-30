@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
     <form method="post">
         {% csrf_token %}
         {{ form.username}}
@@ -13,8 +9,6 @@
         {{ form.password1.errors }}
         {{ form.password2}}
         {{ form.password2.errors}}
-        <button type="submit"> Register Worker </button>
+        <button type="submit"> Register </button>
     </form>
-
-</body>
-</html>
+{% endblock %}

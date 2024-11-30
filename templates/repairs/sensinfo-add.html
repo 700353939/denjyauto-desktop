@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+
     <form method="post" action="{% url 'sensinfo-add' client_pk=client.pk car_pk=car.pk repair_pk=repair.pk %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Add Sensitive Info</button>
     </form>
-</body>
-</html>
+
+{% endblock %}

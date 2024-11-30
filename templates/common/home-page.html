@@ -1,14 +1,26 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>DENJY AUTO</title>
 </head>
 <body>
+   
     <p>Its home page</p>
     <p>It's gonna be beautiful</p>
-    <button onclick="location.href='{% url 'login' %}'"> Click here </button>
+    
+    {% if not request.user.is_authenticated %}
+        <button onclick="location.href='{% url 'login' %}'"> Login </button>
+    {% else %}
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit"><i> Logout </i></button>
+        </form>
+        <button onclick="location.href='{% url 'admin-page' %}'"> I'am Admin or Worker </button>
+    {% endif %}
+
 </body>
 </html>
+
 

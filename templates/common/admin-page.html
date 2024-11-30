@@ -1,14 +1,6 @@
+{% extends 'common/base.html' %}
 {% load static %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<button onclick="window.location.href='{% url 'admin:index' %}'">Go to Admin Panel</button>
-<button onclick="location.href='{% url 'register-worker'%}'"> Register Worker </button>
+{% block content %}
 
 <p>admin_page, register - worker, search form</p>
 <p>It's gonna be beautiful too....</p>
@@ -16,10 +8,8 @@
     <form class="searchbar" method="post">
         <input type="text" placeholder="Search client...">
         <button>
-            <img src="/static/images/rim-button.png">
+            <img src="/images/rim.png">
         </button>
-        <div></div>
-        <div><a href="{% url 'clientcar-add' %}"> Add New Client And Car </a></div>
         <div></div>
     </form>
     <table>
@@ -76,5 +66,4 @@
             {% endif %} 
         </span> 
     </div> 
-</body>
-</html>
+{% endblock %}

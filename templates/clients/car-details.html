@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Car details</title>
-</head>
-<body>
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+    
     <form method="post">
         <h1>{{ client_name }} - car details</h1>
             <ul>
@@ -16,5 +13,5 @@
     <button onclick="location.href='{% url 'car-edit' client_pk=client_pk pk=car.pk %}'"> Edit Car </button>
     <button onclick="location.href='{% url 'car-delete' client_pk=client_pk pk=car.pk %}'"> Delete Car </button>
     <button onclick="location.href='{% url 'repair-details' client_pk=client_pk car_pk=car.pk %}'"> Repair Details </button>
-</body>
-</html>
+    
+{% endblock %}

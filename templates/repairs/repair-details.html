@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Repairs</title>
-</head>
-<body>
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+
 <div>
     <button onclick="location.href='{% url 'repair-add' client_pk=client.pk car_pk=car.pk %}'"> Add new repair </button>
 </div>
@@ -33,5 +30,5 @@
         </tr>
     </table>
 {% endfor %}
-</body>
-</html>
+
+{% endblock %}

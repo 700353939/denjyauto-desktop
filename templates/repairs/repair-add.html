@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>       
-        you already know it's gonna be beautiful
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+
+    you already know it's gonna be beautiful
     <form method="post" action="{% url 'repair-add' client_pk=client.pk car_pk=car.pk %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Add Repair</button>
     </form>
-</body>
-</html>
+
+{% endblock %}
