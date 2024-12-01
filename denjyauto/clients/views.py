@@ -5,11 +5,12 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, DetailView, UpdateView
 
+from denjyauto.accounts.permissions import CustomPermissionRequiredMixin
 from denjyauto.clients.forms import ClientForm, CarForm
 from denjyauto.clients.models import Client, Car
 
 
-class ClientCarCombinedCreateView(CreateView):
+class ClientCarCombinedCreateView(CustomPermissionRequiredMixin, CreateView):
     template_name = 'clients/clientcar-add.html'
 
     def get_success_url(self, client_pk):
@@ -36,7 +37,7 @@ class ClientCarCombinedCreateView(CreateView):
             return self.render_to_response({'client_form': client_form, 'car_form': car_form})
 
 
-class ClientDetails(DetailView):
+class ClientDetails(CustomPermissionRequiredMixin, DetailView):
     model = Client
     template_name = 'clients/client-details.html'
     context_object_name = 'client'
@@ -66,7 +67,7 @@ def client_delete(request, pk):
     return redirect('admin-page')
 
 
-class CarAdd(View):
+class CarAdd(CustomPermissionRequiredMixin, View):
     template_name = 'clients/car-add.html'
 
     def get(self, request, client_pk, *args, **kwargs):
@@ -87,7 +88,7 @@ class CarAdd(View):
         return render(request, 'clients/car-add.html', {'form': form, 'client': client})
 
 
-class CarDetails(DetailView):
+class CarDetails(CustomPermissionRequiredMixin, DetailView):
     model = Car
     template_name = 'clients/car-details.html'
     context_object_name = 'car'

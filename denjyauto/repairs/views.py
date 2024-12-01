@@ -5,12 +5,13 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import UpdateView
 
+from denjyauto.accounts.permissions import CustomPermissionRequiredMixin
 from denjyauto.clients.models import Client, Car
 from denjyauto.repairs.forms import RepairForm, SensitiveRepairInfoForm
 from denjyauto.repairs.models import Repair, SensitiveRepairInfo
 
 
-class RepairAdd(View):
+class RepairAdd(CustomPermissionRequiredMixin, View):
     template_name = 'repairs/repair-add.html'
 
     def get(self, request, client_pk, car_pk, *args, **kwargs):
@@ -40,7 +41,7 @@ class RepairAdd(View):
             )
 
 
-class RepairDetails(View):
+class RepairDetails(CustomPermissionRequiredMixin, View):
     template_name = 'repairs/repair-details.html'
 
     def get(self, request, client_pk, car_pk, *args, **kwargs):

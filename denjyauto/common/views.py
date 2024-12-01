@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from denjyauto.clients.forms import ClientForm
 from denjyauto.clients.models import Client
@@ -10,6 +10,9 @@ def home_page(request):
 
 @login_required
 def admin_page(request):
+    if not request.user.is_staff:
+        return home_page(request)
+
     all_clients = Client.objects.all()
     clients_form = ClientForm()
 
@@ -29,4 +32,3 @@ def admin_page(request):
         'clients_form': clients_form,
     }
     return render(request, 'common/admin-page.html', context=context)
-
