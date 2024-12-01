@@ -10,9 +10,8 @@ from denjyauto.repairs.forms import RepairForm, SensitiveRepairInfoForm
 from denjyauto.repairs.models import Repair, SensitiveRepairInfo
 
 
-class RepairAdd(PermissionRequiredMixin, View):
+class RepairAdd(View):
     template_name = 'repairs/repair-add.html'
-    permission_required = ['repairs.repair-add']
 
     def get(self, request, client_pk, car_pk, *args, **kwargs):
         client = get_object_or_404(Client, pk=client_pk)
@@ -41,9 +40,8 @@ class RepairAdd(PermissionRequiredMixin, View):
             )
 
 
-class RepairDetails(PermissionRequiredMixin, View):
+class RepairDetails(View):
     template_name = 'repairs/repair-details.html'
-    permission_required = ['repairs.repair-details']
 
     def get(self, request, client_pk, car_pk, *args, **kwargs):
         client = get_object_or_404(Client, pk=client_pk)

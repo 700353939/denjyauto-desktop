@@ -9,9 +9,8 @@ from denjyauto.clients.forms import ClientForm, CarForm
 from denjyauto.clients.models import Client, Car
 
 
-class ClientCarCombinedCreateView(PermissionRequiredMixin, CreateView):
+class ClientCarCombinedCreateView(CreateView):
     template_name = 'clients/clientcar-add.html'
-    permission_required = ['clients.clientcar-add']
 
     def get_success_url(self, client_pk):
         return reverse_lazy('client-details', kwargs={'pk': client_pk})
@@ -37,10 +36,9 @@ class ClientCarCombinedCreateView(PermissionRequiredMixin, CreateView):
             return self.render_to_response({'client_form': client_form, 'car_form': car_form})
 
 
-class ClientDetails(PermissionRequiredMixin, DetailView):
+class ClientDetails(DetailView):
     model = Client
     template_name = 'clients/client-details.html'
-    permission_required = ['clients.client-details']
     context_object_name = 'client'
 
     def get_context_data(self, **kwargs):
@@ -68,9 +66,8 @@ def client_delete(request, pk):
     return redirect('admin-page')
 
 
-class CarAdd(PermissionRequiredMixin, View):
+class CarAdd(View):
     template_name = 'clients/car-add.html'
-    permission_required = ['clients.car-add']
 
     def get(self, request, client_pk, *args, **kwargs):
         client = get_object_or_404(Client, pk=client_pk)
@@ -90,10 +87,9 @@ class CarAdd(PermissionRequiredMixin, View):
         return render(request, 'clients/car-add.html', {'form': form, 'client': client})
 
 
-class CarDetails(PermissionRequiredMixin, DetailView):
+class CarDetails(DetailView):
     model = Car
     template_name = 'clients/car-details.html'
-    permission_required = ['clients.car-details']
     context_object_name = 'car'
 
     def get_object(self, queryset=None):
