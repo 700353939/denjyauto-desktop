@@ -24,39 +24,9 @@ class Client(models.Model):
 
 
 class Car(models.Model):
-    BRANDS = [
-        ("AUDI", "Audi"),
-        ("BMW", "BMW"),
-        ("MERCEDES", "Mercedes-Benz"),
-        ("TOYOTA", "Toyota"),
-        ("HONDA", "Honda"),
-        ("FORD", "Ford"),
-        ("OPEL", "Opel"),
-        ("VOLKSWAGEN", "Volkswagen"),
-        ("NISSAN", "Nissan"),
-        ("HYUNDAI", "Hyundai"),
-        ("KIA", "Kia"),
-        ("PEUGEOT", "Peugeot"),
-        ("RENAULT", "Renault"),
-        ("CHEVROLET", "Chevrolet"),
-        ("JEEP", "Jeep"),
-        ("SUBARU", "Subaru"),
-        ("MAZDA", "Mazda"),
-        ("LAND_ROVER", "Land Rover"),
-        ("VOLVO", "Volvo"),
-        ("PORSCHE", "Porsche"),
-        ("LEXUS", "Lexus"),
-        ("JAGUAR", "Jaguar"),
-        ("FIAT", "Fiat"),
-        ("ALFA_ROMEO", "Alfa Romeo"),
-        ("MITSUBISHI", "Mitsubishi"),
-        ("SUZUKI", "Suzuki"),
-        ("LADA", "Lada"),
-        ("OTHER", "Other")
-    ]
     license_plate = models.CharField(max_length=10, unique=True, verbose_name="License plate")
     vin = models.CharField(max_length=17, verbose_name= "VIN")
-    brand = models.CharField(choices=BRANDS, verbose_name= "Brand")
+    brand = models.CharField(max_length=50, verbose_name="Brand", blank=True, null=True)
     year = models.PositiveIntegerField(blank=True, null=True, verbose_name= "Year")
     first_visit = models.DateField(auto_now_add=True, verbose_name= "First visit")
     car_notes = models.TextField(blank=True, null=True, verbose_name= "Notes about car")
