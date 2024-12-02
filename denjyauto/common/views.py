@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from denjyauto.clients.forms import ClientForm
-from denjyauto.clients.models import Client
+from denjyauto.clients.models import Client, Car
+
 
 def home_page(request):
     return render(request, template_name='common/home-page.html')
@@ -32,3 +33,28 @@ def admin_page(request):
         'clients_form': clients_form,
     }
     return render(request, 'common/admin-page.html', context=context)
+
+def search_view(request):
+    query = request.GET.get('query', '')
+    results = []
+
+    if query:
+        clients = Client.objects.filter(name__icontains=query)
+        cars = Car.objects.filter(license_plate__icontains=query)
+
+        for client in clients:
+            results.append({
+                'type': 'client',
+                'id': client.id,
+                'client_name': client.name,
+            })
+
+        for car in cars:
+            results.append({
+                'type': 'car',
+                'id': car.id,
+                'client_id': car.client.id,
+                'license_plate': car.license_plate,
+            })
+
+    return render(request, 'common/search.html', {'results': results})

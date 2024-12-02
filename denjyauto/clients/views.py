@@ -45,7 +45,11 @@ class ClientDetails(CustomPermissionRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         client = self.get_object()
-        context['fields'] = [(field.verbose_name, getattr(client, field.name)) for field in client._meta.fields]
+        context['fields'] = [
+            (field.verbose_name, getattr(client, field.name))
+            for field in client._meta.fields
+            if field.name not in ['name', 'id']
+        ]
         return context
 
 

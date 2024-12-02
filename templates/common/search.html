@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+{% block content %}    
+  {% if results %}
+    <h3>Results:</h3>
+    <ul>
+      {% for item in results %}
+        <li>
+          {% if item.type == 'client' %}
+            <a href="{% url 'client-details' item.id %}">{{ item.client_name }}</a>
+          {% elif item.type == 'car' %}
+            <a href="{% url 'car-details' client_pk=item.client_id pk=item.id %}">{{ item.license_plate }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

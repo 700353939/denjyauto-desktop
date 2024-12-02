@@ -3,12 +3,20 @@
 {% block content %}
     
     <form method="post">
-        <h1>Client details</h1>
+        <h2>Client {{ client.name }} details</h2>
             <ul>
                 {% for field, value in fields %}
                     <li>{{ field }}: {{ value }} </li>
                 {% endfor %}
             </ul>
+            <h3>Cars:</h3>
+            <ul>
+            {% for car in client.car_set.all %}
+                <li><a href='{% url 'car-details' client_pk=client.pk pk=car.pk %}'> {{ car.license_plate }} </a></li>
+            {% endfor %}
+            </ul>
+            
+    
     </form>
     <button onclick="location.href='{% url 'client-edit' client.pk %}'">Edit Client</button>
     <button onclick="location.href='{% url 'client-delete' client.pk %}'"> Delete Client </button>

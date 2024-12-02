@@ -8,4 +8,11 @@
     <button onclick="window.location.href='{% url 'admin:index' %}'">Go to Admin Panel</button>
     <button onclick="location.href='{% url 'register-worker'%}'"> Register Worker </button>
     <div><a href="{% url 'clientcar-add' %}"> Add New Client And Car </a></div>
+    <button onclick="window.location.href = document.referrer;">Back</button>
+    <form method="GET" action="{% url 'search' %}">
+        <input type="text" name="query" 
+               placeholder="Search a client by name or car by license plate...... " 
+               value="{{ request.GET.query }}">
+    <button type="submit">Go</button>
+  </form>
 </nav>
