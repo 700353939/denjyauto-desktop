@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 
@@ -63,6 +64,8 @@ def search_view(request):
 
 
 def calculate_profit(request):
+    if not request.user.has_perm('clients.client-delete'):
+        raise PermissionDenied
     profit = None
     repairs_list = None
 
