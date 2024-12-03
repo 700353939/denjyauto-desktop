@@ -1,9 +1,11 @@
 {% extends 'common/base.html' %}
 {% load static %}
 {% block content %}
-car number
     <form method="post">
-        <h1>Sensitive Info Details</h1>
+        <h1>Sensitive info details
+            repair car: {{ car.license_plate }}, 
+            on date: {{ repair.repair_date }},
+            Client name: {{ client.name }}</h1>
             <ul>
                 {% for field, value in sensinfo_fields %}
                     <li>{{ field }}: {{ value }} </li>

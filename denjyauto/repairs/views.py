@@ -152,7 +152,7 @@ class SensitiveRepairInfoDetails(PermissionRequiredMixin, View):
             sensinfo = sensinfo_queryset.first()
             sensinfo_fields = [
                 (field.verbose_name, getattr(sensinfo, field.name))
-                for field in sensinfo._meta.fields
+                for field in sensinfo._meta.fields if field.name != 'repair'
             ]
         else:
             sensinfo = None

@@ -8,7 +8,6 @@
 <h1>Repair Details</h1>
 <p>Client: {{ client.name }}</p>
 <p>Car: {{ car.license_plate }}</p>
-<h1>todo: date of repair</h1>
 {% for repair_detail in repairs %}
     <table>
         {% for field in repair_detail.fields %}

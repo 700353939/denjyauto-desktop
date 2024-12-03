@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 
 # Application definition
 MY_APPS = [
-    'denjyauto.accounting',
     'denjyauto.accounts',
     'denjyauto.clients',
     'denjyauto.common',

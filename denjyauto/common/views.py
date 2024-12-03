@@ -2,8 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 
+from denjyauto.common.forms import DateRangeForm
 from denjyauto.clients.forms import ClientForm
 from denjyauto.clients.models import Client, Car
+from denjyauto.repairs.models import Repair, SensitiveRepairInfo
 
 
 def home_page(request):
@@ -58,3 +60,46 @@ def search_view(request):
             })
 
     return render(request, 'common/search.html', {'results': results})
+
+
+def calculate_profit(request):
+    profit = None
+    repairs_list = None
+
+    if request.method == 'POST':
+        form = DateRangeForm(request.POST)
+        if form.is_valid():
+            from_date = form.cleaned_data['from_date']
+            to_date = form.cleaned_data['to_date']
+
+            repairs = Repair.objects.filter(repair_date__range=(from_date, to_date))
+
+            repairs_list = []
+            profit = 0
+            for repair in repairs:
+                try:
+                    sensitive_info = SensitiveRepairInfo.objects.get(repair=repair)
+                    profit += repair.repair_price - sensitive_info.pure_repair_price
+
+                    repairs_list.append(
+                    {
+                        'date': repairs.repair_date,
+                        'client_price': repair.repair_price,
+                        'pure_price': sensitive_info.pure_repair_price,
+                        'base_profit': repair.repair_price - sensitive_info.pure_repair_price
+                        }
+                    )
+
+                except SensitiveRepairInfo.DoesNotExist:
+
+                    continue
+
+    else:
+        form = DateRangeForm()
+
+    return render(
+        request,
+        'common/calculate_profit.html',
+        {'form': form, 'profit': profit, 'repairs_list': repairs_list}
+    )
+
