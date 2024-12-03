@@ -86,7 +86,7 @@ def calculate_profit(request):
 
                     repairs_list.append(
                     {
-                        'date': repairs.repair_date,
+                        'date': repair.repair_date,
                         'client_price': repair.repair_price,
                         'pure_price': sensitive_info.pure_repair_price,
                         'base_profit': repair.repair_price - sensitive_info.pure_repair_price

@@ -8,28 +8,27 @@
         <button type="submit">Calculate</button>
     </form>
     {% if profit is not None and repairs_list is not None%}
-        
-        {% for item in repairs_list %}
         <table>
         <thead>
         <tr>
             <th>Date</th>
-            <th>Client price</th>            
+            <th>Client price</th>
             <th>Pure price</th>
             <th>Base profit (Client price - Pure price)</th>
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{ item.date }}</td>
-                <td>{{ item.client_price }}</td>
-                <td>{{ item.pure_price }}</td>
-                <td>{{ item.base_profit }}</td>
-            </tr>
+            {% for item in repairs_list %}        
+                <tr>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.client_price }}</td>
+                    <td>{{ item.pure_price }}</td>
+                    <td>{{ item.base_profit }}</td>
+                </tr>
+            {% endfor %}
         </tbody>
         </table>
-        {% endfor %}
         <h2>Base Profit: {{ profit }}</h2>
     {% endif %}
-    
+
 {% endblock %}
