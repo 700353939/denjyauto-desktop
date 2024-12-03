@@ -1,3 +1,4 @@
+from datetime import date
 
 from django.db import models
 from multiselectfield import MultiSelectField
@@ -18,6 +19,7 @@ class Repair(models.Model):
         ("ENGINE MAINTENANCE", "Engine Maintenance"),
         ("CHECK IN", "Check in"),
     ]
+    repair_date = models.DateField(verbose_name= "Date of repair", default=date.today)
     repair_km = models.PositiveIntegerField(blank=True, null=True, verbose_name= "Repair km")
     repairs_type_field = MultiSelectField(choices=REPAIRS_TYPE, verbose_name= "Types repairs")
     repair_price = models.PositiveIntegerField(verbose_name= "Price")
