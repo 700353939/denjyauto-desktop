@@ -1,14 +1,15 @@
 {% extends 'common/base.html' %}
 {% load static %}
+{% load customFilters %}
 {% block content %}
     <form method="post">
         {% csrf_token %}
-        {{ form.username}}
+        {{ form.username|placeholder:'username' }}
         {{ form.username.errors }}
-        {{ form.password1}}
+        {{ form.password1|placeholder:'password' }}
         {{ form.password1.errors }}
-        {{ form.password2}}
-        {{ form.password2.errors}}
-        <button type="submit"> Register </button>
+        {{ form.password2|placeholder:'confirm password' }}
+        {{ form.password2.errors }}
+        <button type="submit"> Register</button>
     </form>
 {% endblock %}

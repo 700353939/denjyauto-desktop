@@ -3,31 +3,45 @@
 {% block content %}
 
 <div>
-    <button onclick="location.href='{% url 'repair-add' client_pk=client.pk car_pk=car.pk %}'"> Add new repair </button>
+    <button 
+        onclick="location.href='{% url 'repair-add' client_pk=client.pk car_pk=car.pk %}'">
+        <span class="red-word"> Add new repair </span> 
+    </button>
 </div>
-<h1>Repair Details</h1>
-<p>Client: {{ client.name }}</p>
-<p>Car: {{ car.license_plate }}</p>
+<div class="details-title">
+    <h2>Repair Details</h2>
+    <h3>Client: <span class="red-word">{{ client.name }}</span></h3>
+    <h3>Car: <span class="red-word">{{ car.license_plate }}</span></h3>
+</div>    
 {% for repair_detail in repairs %}
-    <table>
+    
         {% for field in repair_detail.fields %}
-            <tr>
-                <td>{{ field.key }}</td>
-                <td>{{ field.value }}</td>
-            </tr>
+            <li>{{ field.key }}: {{ field.value }} </li>
         {% endfor %}
-        <tr>
-            <td><button onclick="location.href='{% url 'repair-edit' client_pk=client.pk car_pk=car.pk pk=repair_detail.repair.pk %}'"> Edit Repair </button></td>
-            <td><button onclick="location.href='{% url 'repair-delete' client_pk=client.pk car_pk=car.pk pk=repair_detail.repair.pk %}'"> Delete Repair </button></td>
-            <td>
-                {% if repair_detail.has_sensinfo %}
-                    <button onclick="location.href='{% url 'sensinfo-details' client_pk=client.pk car_pk=car.pk repair_pk=repair_detail.repair.pk %}'">View Admin Info</button>
-                {% else %}
-                    <button onclick="location.href='{% url 'sensinfo-add' client_pk=client.pk car_pk=car.pk repair_pk=repair_detail.repair.pk %}'">Add Admin Info</button>
-                {% endif %}
-            </td>
-        </tr>
-    </table>
+        
+        <span><a id="likeButton" href="{% url 'repair-edit' client_pk=client.pk car_pk=car.pk pk=repair_detail.repair.pk %}"> Edit Repair </a></span>
+        <span><a id="likeButton" href="{% url 'repair-delete' client_pk=client.pk car_pk=car.pk pk=repair_detail.repair.pk %}"> Delete Repair </a></span>
+            {% if repair_detail.has_sensinfo %}
+                <span><a id="likeButton" href="{% url 'sensinfo-details' client_pk=client.pk car_pk=car.pk repair_pk=repair_detail.repair.pk %}">View Admin Info </a></span>
+            {% else %}
+                <span><a id="likeButton" href="{% url 'sensinfo-add' client_pk=client.pk car_pk=car.pk repair_pk=repair_detail.repair.pk %}">Add Admin Info </a></span>
+            {% endif %}
+
 {% endfor %}
 
 {% endblock %}
+
+{#  <form method="post">#}
+{#        <h2>Client {{ client.name }} details</h2>#}
+{#            <ul>#}
+{#                {% for field, value in fields %}#}
+{#                    <li>{{ field }}: {{ value }} </li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+{#            <h3>Cars:</h3>#}
+{#            <ul>#}
+{#            {% for car in client.car_set.all %}#}
+{#                <li><a href='{% url 'car-details' client_pk=client.pk pk=car.pk %}'> {{ car.license_plate }} </a></li>#}
+{#            {% endfor %}#}
+{#            </ul>    #}
+{#    </form>#}

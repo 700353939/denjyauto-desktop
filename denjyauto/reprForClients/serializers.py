@@ -13,4 +13,4 @@ class CarSerializer(serializers.ModelSerializer):
 class RepairSerializer(serializers.ModelSerializer):
     class Meta:
         model = Repair
-        fields = ['id', 'repair_km', 'repairs_type_field', 'repair_price','car']
+        fields = ['repair_date', 'repair_km', 'repairs_type_field', 'repair_price','car']

@@ -1,26 +1,39 @@
 {% load static %}
-
 <!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<link rel="icon" type="icon" href="{% static 'images/denjyauto.png' %}">
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 <html lang="en">
 <head>
-    <title>DENJY AUTO</title>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
 </head>
 <body>
-   
-    <p>Its home page</p>
-    <p>It's gonna be beautiful</p>
-    
+<span class="main-button">
     {% if not request.user.is_authenticated %}
-        <button onclick="location.href='{% url 'login' %}'"> Login </button>
+        <button onclick="location.href='{% url 'login' %}'">Admin</button>
     {% else %}
-        <form method="post" action="{% url 'logout' %}">
+        <form id="logout-form" method="post" action="{% url 'logout' %}">
             {% csrf_token %}
             <button type="submit"><i> Logout </i></button>
         </form>
-        <button onclick="location.href='{% url 'admin-page' %}'"> I'am Admin or Worker </button>
     {% endif %}
+        {% if not request.user.is_authenticated %}
+            <button onclick="location.href='{% url 'login' %}'">Worker</button>
+        {% else %}
+            <button onclick="location.href='{% url 'admin-page' %}'"> Admin Page</button>
+        {% endif %}
+</span>
 
+<div id="home-page">
+    <div class="logo"><img src="{% static 'images/denjyauto.png' %}"></div>
+    <div id="reprForClient"></div>
+</div>
+<footer>
+    <div class="leading">Feel free to contact me if you have any questions or concerns.</div>
+</footer>
 </body>
+<script src="{% static 'js/main.js' %}"></script>
 </html>
-
-

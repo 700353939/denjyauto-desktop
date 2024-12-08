@@ -4,7 +4,7 @@
 
     <form method="post" action="{% url 'sensinfo-add' client_pk=client.pk car_pk=car.pk repair_pk=repair.pk %}">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_div }}
         <button type="submit">Add Sensitive Info</button>
     </form>
 

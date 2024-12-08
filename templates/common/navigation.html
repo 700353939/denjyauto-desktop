@@ -1,20 +1,11 @@
-
 <nav>
-    <form method="post" action="{% url 'logout' %}">
+    <form id="logout-form" method="post" action="{% url 'logout' %}">
         {% csrf_token %}
         <button type="submit"><i> Logout </i></button>
     </form>
-    <button onclick="location.href='{% url 'admin-page'%}'"> Admin Page </button>
-    <button onclick="window.location.href='{% url 'admin:index' %}'">Go to Admin Panel</button>
-    <button onclick="location.href='{% url 'register-worker'%}'"> Register Worker </button>
-    <button onclick="location.href='{% url 'calculate-profit'%}'"> Calculate Profit </button>
-    <div><a href="{% url 'clientcar-add' %}"> Add New Client And Car </a></div>
-    <button onclick="window.location.href = document.referrer;">Back</button>
-    
-    <form method="GET" action="{% url 'search' %}">
-        <input type="text" name="query" 
-               placeholder="Search a client by name or car by license plate...... " 
-               value="{{ request.GET.query }}">
-    <button type="submit">Go</button>
-  </form>
+    <div><a id="likeButton" href="{% url 'admin-page'%}"> Admin Page </a></div>
+    <div><a id="likeButton" href="{% url 'admin:index' %}">Go to Admin Panel </a></div>
+    <div><a id="likeButton" href="{% url 'register-worker'%}"> Register Worker </a></div>
+    <div><a id="likeButton" href="{% url 'calculate-profit'%}"> Calculate Profit </a></div>
+    <div><a id="likeButton" href="{% url 'clientcar-add' %}"> Add New Client And Car </a></div>
 </nav>

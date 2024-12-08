@@ -1,17 +1,15 @@
 {% extends 'common/base.html' %}
 {% load static %}
 {% block content %}
-    
-    <form method="post">
-        <h1>{{ client_name }} - car details</h1>
-            <ul>
-                {% for field, value in fields %}
-                    <li>{{ field }}: {{ value }} </li>
-                {% endfor %}
-            </ul>
-    </form>    
-    <button onclick="location.href='{% url 'car-edit' client_pk=client_pk pk=car.pk %}'"> Edit Car </button>
-    <button onclick="location.href='{% url 'car-delete' client_pk=client_pk pk=car.pk %}'"> Delete Car </button>
-    <button onclick="location.href='{% url 'repair-details' client_pk=client_pk car_pk=car.pk %}'"> Repair Details </button>
-    
+    <div id="card">
+        <form method="post">
+            <div><span class="red-word">{{ client_name }}</span> car details</div>
+            {% for field, value in fields %}
+                <div>{{ field }}: {{ value }} </div>
+            {% endfor %}
+            <span><a id="likeButton" href="{% url 'car-edit' client_pk=client_pk pk=car.pk %}"> Edit Car </a></span>
+            <span><a id="likeButton" href="{% url 'car-delete' client_pk=client_pk pk=car.pk %}"> Delete Car </a></span>
+            <span><a id="likeButton" href="{% url 'repair-details' client_pk=client_pk car_pk=car.pk %}"> Repair Details </a></span>
+        </form>
+    </div>
 {% endblock %}

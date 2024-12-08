@@ -48,7 +48,7 @@ class ClientDetails(CustomPermissionRequiredMixin, DetailView):
         context['fields'] = [
             (field.verbose_name, getattr(client, field.name))
             for field in client._meta.fields
-            if field.name not in ['name', 'id']
+            if field.name not in ['user', 'id']
         ]
         return context
 
@@ -108,7 +108,10 @@ class CarDetails(CustomPermissionRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         car = self.get_object()
-        context['fields'] = [(field.verbose_name, getattr(car, field.name)) for field in car._meta.fields]
+        context['fields'] = [
+            (field.verbose_name, getattr(car, field.name))
+            for field in car._meta.fields if field.name != 'client'
+        ]
         context['client_name'] = car.client.name
         context['client_pk'] = car.client.pk
         return context

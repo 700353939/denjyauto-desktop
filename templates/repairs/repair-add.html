@@ -5,7 +5,7 @@
     you already know it's gonna be beautiful
     <form method="post" action="{% url 'repair-add' client_pk=client.pk car_pk=car.pk %}">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_div }}
         <button type="submit">Add Repair</button>
     </form>
 

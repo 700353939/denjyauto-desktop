@@ -1,28 +1,27 @@
 {% extends 'common/base.html' %}
 {% load static %}
 {% block content %}
-    
-    <form method="post">
-        <h2>Client {{ client.name }} details</h2>
+    <div id="card">
+        <form method="post">
+            <h2>Client <span class="red-word">{{ client.name }}</span> details</h2>
             <ul>
                 {% for field, value in fields %}
-                    <li>{{ field }}: {{ value }} </li>
+                    <li><span class="highlight">{{ field }}</span>: {{ value }}</li>
                 {% endfor %}
             </ul>
             <h3>Cars:</h3>
             <ul>
-            {% for car in client.car_set.all %}
-                <li><a href='{% url 'car-details' client_pk=client.pk pk=car.pk %}'> {{ car.license_plate }} </a></li>
-            {% endfor %}
+                {% for car in client.car_set.all %}
+                    <li><a href='{% url 'car-details' client_pk=client.pk pk=car.pk %}'> {{ car.license_plate }} </a>
+                    </li>
+                {% endfor %}
             </ul>
-            
-    
-    </form>
-    <button onclick="location.href='{% url 'client-edit' client.pk %}'">Edit Client</button>
-    <button onclick="location.href='{% url 'client-delete' client.pk %}'"> Delete Client </button>
-    <button onclick="location.href='{% url 'car-add' client.pk %}'">Add New Car</button>
-    you already know it's gonna be beautiful
-    
+            <span><a id="likeButton" href="{% url 'client-edit' client.pk %}"> Edit Client </a></span>
+            <span><a id="likeButton" href="{% url 'client-delete' client.pk %}"> Delete Client </a></span>
+            <span><a id="likeButton" href="{% url 'car-add' client.pk %}">Add New Car </a></span>
+        </form>
+    </div>
+
 {% endblock %}
 
 

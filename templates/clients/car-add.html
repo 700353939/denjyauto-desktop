@@ -1,12 +1,11 @@
 {% extends 'common/base.html' %}
 {% load static %}
 {% block content %}
-    
-    <form method="post" action="{% url 'car-add' client.pk %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Car</button>
-        you already know it's gonna be beautiful
-    </form>
-    
+
+<form method="post" action="{% url 'car-add' client.pk %}">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <div><button type="submit">Add Car</button></div>
+</form>  
+
 {% endblock %}

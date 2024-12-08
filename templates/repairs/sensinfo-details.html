@@ -2,18 +2,18 @@
 {% load static %}
 {% block content %}
     <form method="post">
-        <h1>Sensitive info details
-            repair car: {{ car.license_plate }}, 
-            on date: {{ repair.repair_date }},
-            Client name: {{ client.name }}</h1>
-            <ul>
-                {% for field, value in sensinfo_fields %}
-                    <li>{{ field }}: {{ value }} </li>
-                {% endfor %}
-            </ul>
+    <div class="details-title">
+    <h2>Sensitive info details</h2>
+    <h3>Client name: <span class="red-word">{{ client.name }}</span></h3>    
+    <h3>car: <span class="red-word">{{ car.license_plate }}</span></h3>
+    <h3>on date: <span class="red-word">{{ repair.repair_date }}</span></h3>
+    </div>
+    <ul>
+        {% for field, value in sensinfo_fields %}
+            <li>{{ field }}: {{ value }} </li>
+        {% endfor %}
+    </ul>
+    <span><a id="likeButton" href="{% url 'sensinfo-edit' client_pk=client.pk car_pk=car.pk repair_pk=repair.pk pk=sensinfo.pk %}">Edit Sensitive Info </a></span>
+    <span><a id="likeButton" href="{% url 'sensinfo-delete' client_pk=client.pk car_pk=car.pk repair_pk=repair.pk pk=sensinfo.pk %}"> Delete Sensitive Info </a></span>
     </form>
-    <button onclick="location.href='{% url 'sensinfo-edit' client_pk=client.pk car_pk=car.pk repair_pk=repair.pk pk=sensinfo.pk %}'">Edit Sensitive Info</button>
-    <button onclick="location.href='{% url 'sensinfo-delete' client_pk=client.pk car_pk=car.pk repair_pk=repair.pk pk=sensinfo.pk %}'"> Delete Sensitive Info </button>
-    you already know it's gonna be beautiful
-
 {% endblock %}

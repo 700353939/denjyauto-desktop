@@ -1,17 +1,17 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <html lang="en">
 <head>
-    <title>DENJY AUTO</title>
 </head>
 <body>
     <header>
         {% include 'common/navigation.html' %}
     </header>
-    <main>
         {% block content %}
         {% endblock %}
-    </main>
 </body>
 </html>

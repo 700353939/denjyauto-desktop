@@ -21,14 +21,14 @@ class Repair(models.Model):
     ]
     repair_date = models.DateField(verbose_name= "Date of repair", default=date.today)
     repair_km = models.PositiveIntegerField(blank=True, null=True, verbose_name= "Repair km")
-    repairs_type_field = MultiSelectField(choices=REPAIRS_TYPE, verbose_name= "Types repairs")
+    repairs_type_field = MultiSelectField(choices=REPAIRS_TYPE, verbose_name= "Type repairs")
     repair_price = models.PositiveIntegerField(default=0, verbose_name= "Price")
-    repair_notes = models.TextField(blank=True, null=True, verbose_name= "Notes")
+    repair_notes = models.TextField(blank=True, null=True, verbose_name= "Description")
     car = models.ForeignKey(to=Car, on_delete=models.CASCADE)
 
 
 class SensitiveRepairInfo(models.Model):
-    text = models.TextField(blank=True, null=True, verbose_name= "It's all about...")
+    text = models.TextField(blank=True, null=True, verbose_name= "Description")
     pure_repair_price = models.PositiveIntegerField(default=0, verbose_name= "Pure repair price")
     repair = models.OneToOneField(to=Repair, on_delete=models.CASCADE)
 

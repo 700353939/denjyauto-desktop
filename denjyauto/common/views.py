@@ -66,7 +66,7 @@ def search_view(request):
 def calculate_profit(request):
     if not request.user.has_perm('clients.client-delete'):
         raise PermissionDenied
-    profit = None
+    profit = 0
     repairs_list = None
 
     if request.method == 'POST':
@@ -78,7 +78,7 @@ def calculate_profit(request):
             repairs = Repair.objects.filter(repair_date__range=(from_date, to_date))
 
             repairs_list = []
-            profit = 0
+
             for repair in repairs:
                 try:
                     sensitive_info = SensitiveRepairInfo.objects.get(repair=repair)

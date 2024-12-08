@@ -1,13 +1,13 @@
 {% extends 'common/base.html' %}
 {% load static %}
 {% block content %}
-     <h1>Calculate Profit</h1>
     <form method="post">
+        <h2>Calculate Profit</h2>
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.as_div }}
         <button type="submit">Calculate</button>
     </form>
-    {% if profit is not None and repairs_list is not None%}
+    {% if profit is not None and repairs_list is not None %}
         <table>
         <thead>
         <tr>
@@ -27,8 +27,7 @@
                 </tr>
             {% endfor %}
         </tbody>
-        </table>
-        <h2>Base Profit: {{ profit }}</h2>
+        </table>        
     {% endif %}
-
+    <div class="profit"><h2>Base Profit Total: {{ profit }}</h2></div>
 {% endblock %}

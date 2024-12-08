@@ -20,4 +20,4 @@ def create_user_for_client(sender, instance, created, **kwargs):
 
             user.groups.add(clients_group)
 
-            Client.objects.filter(pk=instance.pk).update(user=user)
+            Client.objects.filter(pk=instance.pk).update(user=user, username=user.username)
