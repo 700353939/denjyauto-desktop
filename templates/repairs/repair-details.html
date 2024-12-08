@@ -30,18 +30,3 @@
 {% endfor %}
 
 {% endblock %}
-
-{#  <form method="post">#}
-{#        <h2>Client {{ client.name }} details</h2>#}
-{#            <ul>#}
-{#                {% for field, value in fields %}#}
-{#                    <li>{{ field }}: {{ value }} </li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#            <h3>Cars:</h3>#}
-{#            <ul>#}
-{#            {% for car in client.car_set.all %}#}
-{#                <li><a href='{% url 'car-details' client_pk=client.pk pk=car.pk %}'> {{ car.license_plate }} </a></li>#}
-{#            {% endfor %}#}
-{#            </ul>    #}
-{#    </form>#}
