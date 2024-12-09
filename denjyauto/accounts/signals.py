@@ -1,4 +1,4 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.contrib.auth.models import Group
 from denjyauto.accounts.models import CustomUser
@@ -21,3 +21,8 @@ def create_user_for_client(sender, instance, created, **kwargs):
             user.groups.add(clients_group)
 
             Client.objects.filter(pk=instance.pk).update(user=user, username=user.username)
+
+@receiver(post_delete, sender=Client)
+def delete_related_user(sender, instance, **kwargs):
+    if instance.user:
+        instance.user.delete()
