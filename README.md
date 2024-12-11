@@ -5,11 +5,11 @@
 
 Идеята е да се използва от три групи потребители.
 
-Първата група (Admins) (superuser), (username: admin, password: admin), пълни CRUD функционалности
+Първата група (Admins) (superuser), (username: admin, password: admin), пълни CRUD функционалности.
 Втората група (Workers) (username: worker , password: workerpassword123) - може само да добавя и вижда 
 информацията, съществува една секция, която е видима единствено за админа.
 
-За работник и суперусер се използва login формата, зад бутоните ADMIN и WORKER, в левия или десния ъгъл, 
+За worker и admin се използва login формата, зад бутоните ADMIN и WORKER, в левия или десния ъгъл, 
 на началната страница.
 
 Третата група (Clients) клиент на сервиза (username: testc1, password: defaultpassword123), 
