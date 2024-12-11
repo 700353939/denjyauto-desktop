@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchData(endpoint, token) {
         try {
-            const response = await fetch(`http://localhost:8000/api${endpoint}`, { // HERE
+            const response = await fetch(`https://denjyauto-e7a4hre3acf2dzfg.italynorth-01.azurewebsites.net/api${endpoint}`, { // HERE
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
