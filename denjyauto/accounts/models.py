@@ -22,7 +22,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             "unique": ("A user with that username already exists."),
         },
     )
-    email = models.EmailField(("email address"), blank=True, null=True)
+    email = models.EmailField(
+        ("email address"),
+        blank=True, null=True
+    )
     is_staff = models.BooleanField(
         ("staff status"),
         default=False,
@@ -36,8 +39,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             "Unselect this instead of deleting accounts."
         ),
     )
-    date_joined = models.DateTimeField(("date joined"), default=timezone.now)
-    is_client = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(
+        ("date joined"),
+        default=timezone.now
+    )
+    is_client = models.BooleanField(
+        default=False
+    )
 
     objects = AppUserManager()
 
