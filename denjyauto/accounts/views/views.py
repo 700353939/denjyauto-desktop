@@ -4,10 +4,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login, get_user_model
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from denjyauto import settings
 from denjyauto.accounts.forms import WorkerUserCreationForm
+from denjyauto.accounts.permissions import CustomPermissionRequiredMixin
 
 UserModel = get_user_model()
 
@@ -57,3 +58,18 @@ class RegisterWorker(PermissionRequiredMixin, CreateView):
         user.groups.add(group)
 
         return response
+
+class WorkerDetails(CustomPermissionRequiredMixin, DetailView):
+    model = UserModel
+    template_name = 'accounts/details-worker.html'
+    context_object_name = 'user'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.get_object()
+        context['fields'] = [
+            (field.verbose_name, getattr(user, field.name))
+            for field in user._meta.fields
+            if field.name not in ['password', 'id', 'is_superuser', 'is_client']
+        ]
+        return context

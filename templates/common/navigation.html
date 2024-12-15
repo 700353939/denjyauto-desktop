@@ -5,7 +5,13 @@
     </form>
     <div><a id="likeButton" href="{% url 'admin-page'%}"> Admin Page </a></div>
     <div><a id="likeButton" href="{% url 'admin:index' %}">Go to Admin Panel </a></div>
-    <div><a id="likeButton" href="{% url 'register-worker'%}"> Register Worker </a></div>
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <div><a id="likeButton" href="{% url 'register-worker'%}"> Register Worker </a></div>
+        {% else %}
+            <div><a id="likeButton" href="{% url 'details-worker' pk=user.pk %}"> Worker Details </a></div>
+        {% endif %}
+    {% endif %}
     <div><a id="likeButton" href="{% url 'calculate-profit'%}"> Calculate Profit </a></div>
     <div><a id="likeButton" href="{% url 'clientcar-add' %}"> Add New Client And Car </a></div>
 </nav>

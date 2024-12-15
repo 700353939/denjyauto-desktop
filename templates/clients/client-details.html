@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
     <div id="card">
-        <form method="post">
+        <form method="get">
             <h2>Client <span class="red-word">{{ client.name }}</span> details</h2>
             <ul>
                 {% for field, value in fields %}

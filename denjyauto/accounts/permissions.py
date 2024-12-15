@@ -12,6 +12,7 @@ class CustomPermissionRequiredMixin(PermissionRequiredMixin):
         'clients.client-details',
         'repairs.repair-add'
         'repairs.repair-details'
+        'accounts.details-worker'
     ]
 
     def has_permission(self):

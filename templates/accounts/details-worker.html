@@ -1,0 +1,13 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load customFilters %}
+{% block content %}
+   <form method="post">
+            <h2><span class="red-word">{{ user.username }}</span> details</h2>
+            <ul>
+                {% for field, value in fields %}
+                    <li><span class="highlight">{{ field }}</span>: {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </form>
+{% endblock %}
