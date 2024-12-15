@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
+from denjyauto import settings
 from denjyauto.accounts.forms import WorkerUserCreationForm
 
 UserModel = get_user_model()
@@ -29,13 +30,14 @@ def login_view(request):
     return render(request, 'accounts/login.html', {'form': form})
 
 def redirect_after_login(request, user):
-    if user.groups.filter(name__in=['Admins', 'Workers']).exists():
+    base_url = settings.BASE_URL_JS
+    if user.groups.filter(name__in=['Admins', 'Workers']).exists() or user.is_superuser:
         return redirect('/common/admin-page')
 
     elif user.groups.filter(name='Clients').exists():
-        return redirect('api-root')
+        return render(request, 'common/home-page.html', {'BASE_URL_JS': base_url})
     else:
-        return redirect('/common/')
+        return redirect('/common/home-page')
 
 class RegisterWorker(PermissionRequiredMixin, CreateView):
     model = UserModel

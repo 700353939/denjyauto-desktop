@@ -122,6 +122,8 @@ DATABASES = {
     }
 }
 
+BASE_URL_JS = os.getenv('BASE_URL_JS', config('BASE_URL_JS'))
+
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
