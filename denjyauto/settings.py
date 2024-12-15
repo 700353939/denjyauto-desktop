@@ -122,8 +122,6 @@ DATABASES = {
     }
 }
 
-BASE_URL_JS = os.getenv('BASE_URL_JS', config('BASE_URL_JS'))
-
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.postgresql",
@@ -134,6 +132,11 @@ BASE_URL_JS = os.getenv('BASE_URL_JS', config('BASE_URL_JS'))
 #         "PORT": 5432,
 #     }
 # }
+# BASE_URL_JS='http://localhost:8000'
+
+BASE_URL_JS = os.getenv('BASE_URL_JS', config('BASE_URL_JS'))
+# 'https://denjyauto-e7a4hre3acf2dzfg.italynorth-01.azurewebsites.net' in azure
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
