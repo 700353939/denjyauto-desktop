@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const app = document.getElementById('reprForClient');
 
+    const BASE_URL = 'https://denjyauto-e7a4hre3acf2dzfg.italynorth-01.azurewebsites.net/api';
+    // For testing, you can change it to:
+    // const BASE_URL = 'http://localhost:8000/api';
+
     function createElement(tag, className = '', content = '') {
         const element = document.createElement(tag);
         if (className) {
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function login(username, password) {
         try {
-            const response = await fetch('https://denjyauto-e7a4hre3acf2dzfg.italynorth-01.azurewebsites.net/api/login/', { // HERE
+            const response = await fetch(`${BASE_URL}/login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -125,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchData(endpoint, token) {
         try {
-            const response = await fetch(`https://denjyauto-e7a4hre3acf2dzfg.italynorth-01.azurewebsites.net/api${endpoint}`, { // HERE
+            const response = await fetch(`${BASE_URL}${endpoint}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -176,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function changePassword(token, oldPassword, newPassword) {
         try {
-            const response = await fetch('https://denjyauto-e7a4hre3acf2dzfg.italynorth-01.azurewebsites.net/api/change-password/', { // HERE
+            const response = await fetch(`${BASE_URL}/login/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

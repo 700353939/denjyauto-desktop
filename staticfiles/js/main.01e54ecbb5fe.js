@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function login(username, password) {
         try {
-            const response = await fetch(`${BASE_URL}/login/`, {
+            const response = await fetch(`${BASE_URL}/login/`, { // HERE
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchData(endpoint, token) {
         try {
-            const response = await fetch(`${BASE_URL}${endpoint}`, {
+            const response = await fetch(`${BASE_URL}${endpoint}`, { // HERE
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function changePassword(token, oldPassword, newPassword) {
         try {
-            const response = await fetch(`${BASE_URL}/login/`, {
+            const response = await fetch(`${BASE_URL}/login/`, {  // HERE
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
