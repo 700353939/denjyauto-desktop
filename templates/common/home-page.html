@@ -11,32 +11,22 @@
     <title>Home Page</title>
 </head>
 <body>
-<span class="main-button">
-    {% if not request.user.is_authenticated %}
-        <button onclick="location.href='{% url 'login' %}'">Admin</button>
-    {% else %}
-        <form id="logout-form" method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit"><i> Logout </i></button>
-        </form>
-    {% endif %}
-        {% if not request.user.is_authenticated %}
-            <button onclick="location.href='{% url 'login' %}'">Worker</button>
-        {% else %}
-            <button onclick="location.href='{% url 'admin-page' %}'"> Admin Page</button>
-        {% endif %}
-</span>
-
 <div id="home-page">
     <div class="logo"><img src="{% static 'images/denjyauto.png' %}"></div>
-    <div id="reprForClient"></div>
+<span class="main-button">
+    {% if not request.user.is_authenticated %}
+        <button id="home-page-button" onclick="location.href='{% url 'login' %}'">Login</button>
+    {% else %}
+        <button id="home-page-button" onclick="location.href='{% url 'admin-page' %}'"> Admin Page</button>
+        <form id="logout-form" method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button id="home-page-button" type="submit"><i> Logout </i></button>
+        </form>
+    {% endif %}
+</span>
 </div>
 <footer>
     <div class="leading">Feel free to contact me if you have any questions or concerns.</div>
 </footer>
 </body>
-<script>
-     window.BASE_URL = "{{ BASE_URL_JS|escapejs }}";
-</script>
-<script src="{% static 'js/main.js' %}"></script>
 </html>

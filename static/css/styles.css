@@ -22,8 +22,8 @@ body {
 
 .main-button {
     display: flex;
-    justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
+    flex-direction: column;
 }
 
 .login-form, .dashboard, .change-password-form {
@@ -202,4 +202,14 @@ a:hover {
     padding: 1rem;
     margin: 1rem;
     background-color: red;
+}
+
+#home-page-button{
+    font-size: xx-large;
+    text-shadow: red 0px 0px 3px;
+    width: 40rem;
+    height: 5rem;
+}
+#home-page-button:hover{
+    transform: translate(10%);
 }

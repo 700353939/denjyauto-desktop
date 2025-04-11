@@ -32,13 +32,6 @@ class Client(models.Model):
         default=0,
         verbose_name="Points"
     )
-    user = models.OneToOneField(
-        'accounts.CustomUser',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True
-    )
-
 
 class Car(models.Model):
     license_plate = models.CharField(

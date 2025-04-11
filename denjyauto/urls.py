@@ -28,5 +28,4 @@ urlpatterns = [
     path('accounts/', include('denjyauto.accounts.urls')),
     path('clients/', include('denjyauto.clients.urls')),
     path('<int:client_pk>/<int:car_pk>/repairs/', include('denjyauto.repairs.urls')),
-    path('api/', include('denjyauto.reprForClients.urls')),
 ]

@@ -40,7 +40,6 @@ MY_APPS = [
     'denjyauto.clients',
     'denjyauto.common',
     'denjyauto.repairs',
-    'denjyauto.reprForClients',
 ]
 
 INSTALLED_APPS = [
@@ -52,27 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'multiselectfield',
-    'rest_framework',
-    'drf_spectacular',
-    'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist'
 
 ] + MY_APPS
-
-REST_FRAMEWORK ={
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
-    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework_simplejwt.authentication.JWTAuthentication'],
-}
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('Bearer',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    'REFRESH_TOKEN_LIFETIME': timedelta(weeks=2)
-}
-SPECTACULAR_SETTINGS = {
-    'TITLE': 'DENJYAUTO Clients',
-    'DESCRIPTIONS': 'Rest for Clients - User',
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,7 +62,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'denjyauto.urls'
@@ -113,12 +92,8 @@ WSGI_APPLICATION = 'denjyauto.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv('DB_NAME', config('DB_NAME')),
-        "USER": os.getenv('DB_USER', config('DB_USER')),
-        "PASSWORD": os.getenv('DB_PASS', config('DB_PASS')),
-        "HOST": os.getenv('DB_HOST', config('DB_HOST')),
-        "PORT": os.getenv('DB_PORT', config('DB_PORT')),
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
 
@@ -176,14 +151,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STORAGES = {
-    "staticfiles": {
-        "BACKEND":
-            "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
